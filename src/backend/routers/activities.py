@@ -6,7 +6,7 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import RedirectResponse
 from typing import Dict, Any, Optional, List
 
-from ..database import activities_collection, teachers_collection
+from ..database import get_activities_collection, get_teachers_collection
 
 router = APIRouter(
     prefix="/activities",
@@ -18,14 +18,16 @@ router = APIRouter(
 def get_activities(
     day: Optional[str] = None,
     start_time: Optional[str] = None,
-    end_time: Optional[str] = None
+    end_time: Optional[str] = None,
+    difficulty: Optional[str] = None
 ) -> Dict[str, Any]:
     """
-    Get all activities with their details, with optional filtering by day and time
+    Get all activities with their details, with optional filtering by day, time and difficulty
     
     - day: Filter activities occurring on this day (e.g., 'Monday', 'Tuesday')
     - start_time: Filter activities starting at or after this time (24-hour format, e.g., '14:30')
     - end_time: Filter activities ending at or before this time (24-hour format, e.g., '17:00')
+    - difficulty: Filter activities by difficulty level ('beginner', 'intermediate', 'advanced')
     """
     # Build the query based on provided filters
     query = {}
@@ -39,7 +41,14 @@ def get_activities(
     if end_time:
         query["schedule_details.end_time"] = {"$lte": end_time}
     
+    if difficulty and difficulty != "none":
+        query["difficulty"] = difficulty
+    elif difficulty == "none":
+        # Special case: show only activities with no difficulty specified
+        query["difficulty"] = {"$exists": False}
+    
     # Query the database
+    activities_collection = get_activities_collection()
     activities = {}
     for activity in activities_collection.find(query):
         name = activity.pop('_id')
@@ -50,18 +59,15 @@ def get_activities(
 @router.get("/days", response_model=List[str])
 def get_available_days() -> List[str]:
     """Get a list of all days that have activities scheduled"""
-    # Aggregate to get unique days across all activities
-    pipeline = [
-        {"$unwind": "$schedule_details.days"},
-        {"$group": {"_id": "$schedule_details.days"}},
-        {"$sort": {"_id": 1}}  # Sort days alphabetically
-    ]
+    activities_collection = get_activities_collection()
     
-    days = []
-    for day_doc in activities_collection.aggregate(pipeline):
-        days.append(day_doc["_id"])
+    # For the memory collection, we need to implement this differently
+    days = set()
+    for activity in activities_collection.find():
+        if 'schedule_details' in activity and 'days' in activity['schedule_details']:
+            days.update(activity['schedule_details']['days'])
     
-    return days
+    return sorted(list(days))
 
 @router.post("/{activity_name}/signup")
 def signup_for_activity(activity_name: str, email: str, teacher_username: Optional[str] = Query(None)):
@@ -70,11 +76,13 @@ def signup_for_activity(activity_name: str, email: str, teacher_username: Option
     if not teacher_username:
         raise HTTPException(status_code=401, detail="Authentication required for this action")
     
+    teachers_collection = get_teachers_collection()
     teacher = teachers_collection.find_one({"_id": teacher_username})
     if not teacher:
         raise HTTPException(status_code=401, detail="Invalid teacher credentials")
     
     # Get the activity
+    activities_collection = get_activities_collection()
     activity = activities_collection.find_one({"_id": activity_name})
     if not activity:
         raise HTTPException(status_code=404, detail="Activity not found")
@@ -102,11 +110,13 @@ def unregister_from_activity(activity_name: str, email: str, teacher_username: O
     if not teacher_username:
         raise HTTPException(status_code=401, detail="Authentication required for this action")
     
+    teachers_collection = get_teachers_collection()
     teacher = teachers_collection.find_one({"_id": teacher_username})
     if not teacher:
         raise HTTPException(status_code=401, detail="Invalid teacher credentials")
     
     # Get the activity
+    activities_collection = get_activities_collection()
     activity = activities_collection.find_one({"_id": activity_name})
     if not activity:
         raise HTTPException(status_code=404, detail="Activity not found")
