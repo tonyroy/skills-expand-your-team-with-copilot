@@ -117,9 +117,6 @@ class MemoryCollection:
                         return False
         return True
 
-# Create collection objects after initialization
-activities_collection = None
-teachers_collection = None
 
 def get_activities_collection():
     """Get the activities collection, ensuring it's initialized"""
