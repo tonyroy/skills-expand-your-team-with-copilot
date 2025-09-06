@@ -1,0 +1,157 @@
+name: 🐛 Bug Report
+description: Report a problem or issue with the school activities website
+title: "[Bug]: "
+labels: ["bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please provide detailed information so we can reproduce and fix the issue.
+
+  - type: input
+    id: bug-title
+    attributes:
+      label: Bug Title
+      description: A clear, concise description of the bug
+      placeholder: "Sign up button doesn't work on mobile devices"
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected to happen instead
+      placeholder: "When I click the 'Sign Up' button on my phone, nothing happens. I expected it to register me for the activity."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Tell us how to reproduce this bug
+      placeholder: |
+        1. Open the website on a mobile phone
+        2. Navigate to any activity
+        3. Click the 'Sign Up' button
+        4. Nothing happens - no confirmation, no error message
+      value: |
+        1. 
+        2. 
+        3. 
+        4. 
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device-type
+    attributes:
+      label: Device Type
+      description: What type of device were you using?
+      options:
+        - Desktop Computer
+        - Laptop
+        - Tablet
+        - Mobile Phone
+        - Chromebook
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: Which browser were you using?
+      options:
+        - Chrome
+        - Safari
+        - Firefox
+        - Edge
+        - Internet Explorer
+        - Mobile Safari (iPhone)
+        - Chrome Mobile (Android)
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often does this happen?
+      description: How frequently can you reproduce this bug?
+      options:
+        - Always - Every time
+        - Usually - Most of the time
+        - Sometimes - Occasionally
+        - Rarely - Hard to reproduce
+        - Once - Only happened once
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity Level
+      description: How much does this bug impact using the website?
+      options:
+        - Low - Minor annoyance
+        - Medium - Makes some features difficult to use
+        - High - Makes important features unusable
+        - Critical - Website completely broken
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact-description
+    attributes:
+      label: Who is affected?
+      description: Describe who experiences this problem and how it impacts them
+      placeholder: "All students trying to sign up for activities on mobile devices. They can't register, which defeats the main purpose of the website."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: "The sign up button should work the same way on mobile as it does on desktop - showing a confirmation message and adding the student to the activity."
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-messages
+    attributes:
+      label: Error Messages
+      description: Did you see any error messages? If so, please copy them exactly as they appeared.
+      placeholder: "No error message appeared"
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Information
+      description: Screenshots, videos, or any other helpful information
+      placeholder: "This started happening after the website was updated last week"
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Temporary Workaround
+      description: Have you found any way to work around this problem?
+      placeholder: "Students can ask the office to sign them up manually"
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmation
+      description: Please confirm you understand the following
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have provided clear steps to reproduce the issue
+          required: true
+        - label: I understand this will be investigated by AI coding assistants
+          required: true
