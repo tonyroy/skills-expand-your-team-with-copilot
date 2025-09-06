@@ -1,0 +1,151 @@
+name: 📝 Content Update
+description: Request changes to text, images, or other content on the website
+title: "[Content]: "
+labels: ["content", "enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Need to update text, images, or other content? This template will help ensure we get all the details right!
+
+  - type: input
+    id: content-title
+    attributes:
+      label: Content Update Title
+      description: Brief description of what content needs to be changed
+      placeholder: "Update school mascot images and colors"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: Type of Content
+      description: What kind of content needs to be updated?
+      options:
+        - Text/Wording
+        - Images/Photos
+        - Colors/Styling
+        - Links/URLs
+        - Activity Information
+        - School Information
+        - Contact Information
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: content-location
+    attributes:
+      label: Where is this content located?
+      description: Which page or section needs the update?
+      options:
+        - Home Page
+        - Activities List
+        - Activity Details
+        - Sign Up Forms
+        - About/Contact Page
+        - Header/Navigation
+        - Footer
+        - Multiple Pages
+        - Not Sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-content
+    attributes:
+      label: Current Content
+      description: What is currently shown that needs to be changed? (Copy the exact text or describe the image)
+      placeholder: "The website currently shows blue colors and generic mascot images"
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired-content
+    attributes:
+      label: Desired Content
+      description: What should it say or look like instead? Be as specific as possible.
+      placeholder: "Use our school colors (white and lime green) and mascot images from the Octodex website"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: update-reason
+    attributes:
+      label: Reason for Update
+      description: Why does this content need to be changed?
+      options:
+        - Outdated Information
+        - Incorrect Information
+        - School Branding/Identity
+        - Accessibility Improvement
+        - User Feedback
+        - Policy Change
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: specific-requirements
+    attributes:
+      label: Specific Requirements
+      description: Any specific requirements, brand guidelines, or restrictions?
+      placeholder: "Must follow school brand guidelines. Lime green color code is #32CD32. Images should be appropriate for all grade levels."
+
+  - type: textarea
+    id: content-source
+    attributes:
+      label: Content Source
+      description: Where should we get the new content? (URLs, file locations, who to contact, etc.)
+      placeholder: "New mascot images: https://octodex.github.com/ - School colors are in the brand guide document"
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Timeline
+      description: When does this need to be updated?
+      options:
+        - ASAP - Very urgent
+        - This week - Soon
+        - This month - Not urgent
+        - No specific deadline
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: How to Verify the Update
+      description: How will we know the content has been updated correctly?
+      placeholder: |
+        - [ ] Website colors changed from blue to white and lime green
+        - [ ] New mascot images appear on the home page
+        - [ ] All pages use consistent school branding
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Any other details we should know?
+      placeholder: "This change was requested by the principal for the upcoming school board presentation"
+
+  - type: checkboxes
+    id: content-approval
+    attributes:
+      label: Content Approval
+      description: Please confirm the following
+      options:
+        - label: I have authority to request this content change
+          required: true
+        - label: The new content is appropriate for a school website
+          required: true
+        - label: I have provided specific details about what should change
+          required: true

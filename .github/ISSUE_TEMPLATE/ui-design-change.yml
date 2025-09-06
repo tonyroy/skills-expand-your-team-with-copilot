@@ -1,0 +1,177 @@
+name: 🎨 UI/Design Change
+description: Request visual or layout changes to improve the website's appearance and usability
+title: "[Design]: "
+labels: ["design", "enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Want to improve how the website looks or works? Help us understand your vision for better design!
+
+  - type: input
+    id: design-title
+    attributes:
+      label: Design Change Title
+      description: Brief description of the visual change you want
+      placeholder: "Make activity cards easier to read on mobile devices"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: design-category
+    attributes:
+      label: Type of Design Change
+      description: What aspect of the design needs improvement?
+      options:
+        - Layout/Spacing
+        - Colors/Themes
+        - Typography/Fonts
+        - Navigation/Menus
+        - Mobile Responsiveness
+        - Accessibility
+        - Visual Effects/Animations
+        - Icons/Images
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: What part of the website?
+      description: Which pages or components need design changes?
+      options:
+        - Entire Website
+        - Home Page
+        - Activities List
+        - Activity Detail Pages
+        - Navigation/Header
+        - Footer
+        - Forms
+        - Mobile View Only
+        - Desktop View Only
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-design
+    attributes:
+      label: Current Design Issues
+      description: What's wrong with how it looks or works now?
+      placeholder: "The activity cards are too small on phones and the text is hard to read. Students have to zoom in to see the details."
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired-design
+    attributes:
+      label: Desired Design
+      description: Describe how you want it to look and work instead
+      placeholder: "Make the cards larger on mobile, increase font size, and make the sign-up button more prominent"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-impact
+    attributes:
+      label: Who will benefit most?
+      description: Which users will this design change help the most?
+      options:
+        - All Users
+        - Students
+        - Teachers
+        - Mobile Users
+        - Desktop Users
+        - Users with Disabilities
+        - Older Users
+        - Younger Users
+    validations:
+      required: true
+
+  - type: dropdown
+    id: design-priority
+    attributes:
+      label: Design Priority
+      description: How important is this visual change?
+      options:
+        - Low - Nice visual improvement
+        - Medium - Would help user experience
+        - High - Current design causes problems
+        - Critical - Current design prevents basic use
+    validations:
+      required: true
+
+  - type: textarea
+    id: design-requirements
+    attributes:
+      label: Design Requirements
+      description: Any specific design requirements, style guides, or constraints?
+      placeholder: "Must maintain school colors (white and lime green). Should work well on all devices. Keep it simple for easy maintenance."
+
+  - type: textarea
+    id: inspiration
+    attributes:
+      label: Design Inspiration
+      description: Examples of websites, apps, or designs that show what you have in mind
+      placeholder: "The district's main website has nice mobile cards. Also like how the library website handles activity filtering."
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Design Success Criteria
+      description: How will we know the design change is successful?
+      placeholder: |
+        - [ ] Activity cards are larger and easier to read on mobile
+        - [ ] Text size is readable without zooming
+        - [ ] Sign-up button is clearly visible
+        - [ ] Design looks good on phones, tablets, and computers
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: dropdown
+    id: testing-devices
+    attributes:
+      label: Testing Devices
+      description: What devices should we test this design on?
+      options:
+        - Mobile phones only
+        - Tablets only
+        - Desktop computers only
+        - Mobile phones and tablets
+        - All devices (phones, tablets, computers)
+        - Specific device (please specify in notes)
+    validations:
+      required: true
+
+  - type: textarea
+    id: accessibility-considerations
+    attributes:
+      label: Accessibility Considerations
+      description: Any specific needs for users with disabilities?
+      placeholder: "Make sure colors have good contrast for vision-impaired users. Buttons should be large enough for users with motor difficulties."
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Design Notes
+      description: Any other design details, mockups, or considerations?
+      placeholder: "This change was suggested during our student focus group. They said the current design feels outdated."
+
+  - type: checkboxes
+    id: design-approval
+    attributes:
+      label: Design Confirmation
+      description: Please confirm the following
+      options:
+        - label: I have checked that this change aligns with school policies
+          required: true
+        - label: I understand this design change should work for all users
+          required: true
+        - label: I have provided enough detail for implementation
+          required: true
