@@ -303,6 +303,18 @@ initial_activities = {
         },
         "max_participants": 15,
         "participants": []
+    },
+    "Morning Chess Club": {
+        "description": "A fun and friendly chess club for beginners. Learn basic strategies, practice with peers, and enjoy the wonderful world of chess in a welcoming environment.",
+        "schedule": "Tuesdays and Wednesdays, 7:15 AM - 8:00 AM",
+        "schedule_details": {
+            "days": ["Tuesday", "Wednesday"],
+            "start_time": "07:15",
+            "end_time": "08:00"
+        },
+        "max_participants": 16,
+        "participants": [],
+        "difficulty": "beginner"
     }
 }
 
